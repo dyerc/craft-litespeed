@@ -11,7 +11,7 @@ use yii\web\Response;
 
 class CacheController extends Controller
 {
-    protected $allowAnonymous = true;
+    protected array|bool|int $allowAnonymous = true;
 
     public function actionClear(): Response
     {
