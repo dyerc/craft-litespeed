@@ -18,9 +18,7 @@ class CacheController extends Controller
         $response = Craft::$app->getResponse();
         $headers = $response->headers;
 
-        // Ensure this request itself is never cached
         $headers->set("X-Litespeed-Cache-Control", "no-cache");
-
         $headers->set("X-LiteSpeed-Purge", "public, private, *");
 
         return $this->asJson([
