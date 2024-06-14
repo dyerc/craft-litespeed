@@ -12,7 +12,7 @@ use GuzzleHttp\Client;
 
 class Cache extends Component
 {
-    public function clearAll()
+    public function clearAll(): bool|string
     {
         try {
             $client = $this->guzzleClient();
@@ -23,11 +23,12 @@ class Cache extends Component
 
             if ($decoded->status === "ok") {
                 return true;
+            } else {
+                return $response->getBody();
             }
         } catch (\Exception $e) {
+            return $e->getMessage();
         }
-
-        return false;
     }
 
     protected function requestClearUrl()

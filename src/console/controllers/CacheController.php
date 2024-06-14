@@ -20,12 +20,12 @@ class CacheController extends Controller
     {
         $cleared = LiteSpeed::getInstance()->cache->clearAll();
 
-        if ($cleared) {
+        if ($cleared === true) {
             $this->stdout("Cleared LiteSpeed cache");
 
             return ExitCode::OK;
         } else {
-            $this->stdout("Failed to clear LiteSpeed cache");
+            $this->stdout("Failed to clear LiteSpeed cache: " . $cleared);
 
             return ExitCode::UNSPECIFIED_ERROR;
         }
