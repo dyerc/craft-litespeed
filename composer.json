@@ -21,7 +21,7 @@
     "docs": "https://github.com/developer/repo/blob/master/README.md"
   },
   "require": {
-    "craftcms/cms": "^4.0.0|^5.0.0",
+    "craftcms/cms": "^3.0.0",
     "php": "^8.0.2"
   },
   "require-dev": {

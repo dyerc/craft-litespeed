@@ -11,7 +11,7 @@ use yii\web\Response;
 
 class CsrfController extends Controller
 {
-    protected array|bool|int $allowAnonymous = true;
+    protected $allowAnonymous = true;
 
     public function actionGetToken(): Response
     {
