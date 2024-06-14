@@ -1,0 +1,47 @@
+{
+  "name": "dyerc/craft-litespeed",
+  "description": "Your plugin’s package description",
+  "type": "craft-plugin",
+  "keywords": [
+    "some",
+    "keywords",
+    "here"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Chris Dyer",
+      "homepage": "https://cdyer.co.uk"
+    }
+  ],
+  "support": {
+    "email": "email@developer-website.tld",
+    "issues": "https://github.com/developer/repo/issues?state=open",
+    "source": "https://github.com/developer/repo",
+    "docs": "https://github.com/developer/repo/blob/master/README.md"
+  },
+  "require": {
+    "craftcms/cms": "^4.0.0|^5.0.0",
+    "php": "^8.0.2"
+  },
+  "require-dev": {
+    "craftcms/phpstan": "dev-main",
+    "phpstan/phpstan": "^1.9"
+  },
+  "autoload": {
+    "psr-4": {
+      "dyerc\\litespeed\\": "src/"
+    }
+  },
+  "extra": {
+    "name": "LiteSpeed",
+    "handle": "litespeed",
+    "class": "dyerc\\litespeed\\LiteSpeed"
+  },
+  "config": {
+    "allow-plugins": {
+      "yiisoft/yii2-composer": true,
+      "craftcms/plugin-installer": true
+    }
+  }
+}

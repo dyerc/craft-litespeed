@@ -1,0 +1,13 @@
+{
+  "name": "craft-litespeed",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "format": "prettier --write .",
+    "phpstan": "vendor/bin/phpstan analyse"
+  },
+  "devDependencies": {
+    "@prettier/plugin-php": "^0.22.2",
+    "prettier": "^3.3.2"
+  }
+}
