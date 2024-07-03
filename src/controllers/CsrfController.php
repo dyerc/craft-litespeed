@@ -16,8 +16,9 @@ class CsrfController extends Controller
     public function actionGetToken(): Response
     {
         $request = Craft::$app->getRequest();
-        $headers = Craft::$app->getResponse()->getHeaders();
+        Craft::$app->getResponse()->setNoCacheHeaders();
 
+        $headers = Craft::$app->getResponse()->getHeaders();
         $headers->set("X-Litespeed-Cache-Control", "no-cache");
 
         return $this->asJson([

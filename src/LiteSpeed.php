@@ -2,15 +2,19 @@
 
 namespace dyerc\litespeed;
 
+use craft\base\Model;
 use craft\base\Plugin;
 use craft\events\ElementEvent;
 use craft\events\RegisterCacheOptionsEvent;
 use craft\events\RegisterUrlRulesEvent;
 use craft\services\Elements;
 use craft\utilities\ClearCaches;
+use craft\web\twig\variables\CraftVariable;
 use craft\web\UrlManager;
+use dyerc\litespeed\models\Settings;
 use dyerc\litespeed\services\Cache;
 use dyerc\litespeed\services\Csrf;
+use dyerc\litespeed\variables\LiteSpeedVariable;
 use yii\base\Event;
 
 /**
@@ -38,10 +42,21 @@ class LiteSpeed extends Plugin
         parent::init();
         self::$plugin = $this;
 
+        /* @var Settings $settings */
+        $settings = $this->getSettings();
+
         $this->_registerServices();
         $this->_registerEvents();
+        $this->_registerVariables();
 
-        $this->csrf->inject();
+        if ($settings->injectCsrf) {
+            $this->csrf->inject();
+        }
+    }
+
+    protected function createSettingsModel(): ?Model
+    {
+        return new Settings();
     }
 
     private function _registerServices(): void
@@ -75,6 +90,17 @@ class LiteSpeed extends Plugin
                 ];
             }
         );
+    }
+
+    private function _registerVariables(): void
+    {
+        Event::on(CraftVariable::class, CraftVariable::EVENT_INIT, function (
+            Event $event
+        ) {
+            /** @var CraftVariable $variable */
+            $variable = $event->sender;
+            $variable->set("litespeed", LiteSpeedVariable::class);
+        });
     }
 
     private function _handleCraftEvent(Event $event): void

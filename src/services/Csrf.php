@@ -12,16 +12,26 @@ use craft\web\View;
 
 class Csrf extends Component
 {
-    public function inject()
+    public function inject(): void
     {
         $view = Craft::$app->getView();
 
-        $csrfTokenName = Craft::$app->getConfig()->getGeneral()->csrfTokenName;
-
         if (!Craft::$app->getRequest()->getIsCpRequest()) {
-            $retrieveUrl = UrlHelper::actionUrl("litespeed/csrf/get-token");
+            $js = $this->injectionScript();
+            $view->registerJs($js, View::POS_END);
+        }
+    }
 
-            $js = <<<JS
+    public function injectionScript($csrfTokenName = null): string
+    {
+        if (!$csrfTokenName) {
+            $csrfTokenName = Craft::$app->getConfig()->getGeneral()
+                ->csrfTokenName;
+        }
+
+        $retrieveUrl = UrlHelper::actionUrl("litespeed/csrf/get-token");
+
+        return <<<JS
 window.LiteSpeed = {
   tokenName: "{$csrfTokenName}",
 };
@@ -51,7 +61,5 @@ setTimeout(function() {
   injectCsrf();
 }, 50);
 JS;
-            $view->registerJs($js, View::POS_END);
-        }
     }
 }

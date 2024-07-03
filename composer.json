@@ -15,10 +15,10 @@
     }
   ],
   "support": {
-    "email": "email@developer-website.tld",
-    "issues": "https://github.com/developer/repo/issues?state=open",
-    "source": "https://github.com/developer/repo",
-    "docs": "https://github.com/developer/repo/blob/master/README.md"
+    "email": "chris@cdyer.co.uk",
+    "issues": "https://github.com/dyerc/craft-litespeed/issues?state=open",
+    "source": "https://github.com/dyerc/craft-litespeed",
+    "docs": "https://github.com/dyerc/craft-litespeed/blob/master/README.md"
   },
   "require": {
     "craftcms/cms": "^4.0.0|^5.0.0",
