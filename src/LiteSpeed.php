@@ -2,11 +2,13 @@
 
 namespace dyerc\litespeed;
 
+use craft\base\Element;
 use craft\base\Model;
 use craft\base\Plugin;
 use craft\events\ElementEvent;
 use craft\events\RegisterCacheOptionsEvent;
 use craft\events\RegisterUrlRulesEvent;
+use craft\helpers\ElementHelper;
 use craft\services\Elements;
 use craft\utilities\ClearCaches;
 use craft\web\twig\variables\CraftVariable;
@@ -109,10 +111,17 @@ class LiteSpeed extends Plugin
             return;
         }
 
+        /** @var Element $element */
         $element = $event->element;
 
-        if ($element->enabled && $element->getEnabledForSite()) {
-            LiteSpeed::$plugin->cache->clearAll();
+        if (!$element->enabled) {
+            return;
         }
+
+        if (ElementHelper::isDraftOrRevision($element)) {
+            return;
+        }
+
+        LiteSpeed::$plugin->cache->clearAll();
     }
 }
