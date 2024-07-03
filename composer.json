@@ -1,12 +1,9 @@
 {
   "name": "dyerc/craft-litespeed",
-  "description": "Your plugin’s package description",
+  "description": "LiteSpeed LSCache integration for Craft CMS",
   "type": "craft-plugin",
-  "keywords": [
-    "some",
-    "keywords",
-    "here"
-  ],
+  "version": "1.0.0-beta.1",
+  "keywords": [],
   "license": "MIT",
   "authors": [
     {
