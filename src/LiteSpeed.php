@@ -112,10 +112,6 @@ class LiteSpeed extends Plugin
         /** @var Element $element */
         $element = $event->element;
 
-        if (!$element->enabled) {
-            return;
-        }
-
         if (ElementHelper::isDraftOrRevision($element)) {
             return;
         }
