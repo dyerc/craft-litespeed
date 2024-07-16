@@ -3,6 +3,7 @@
   "description": "LiteSpeed LSCache integration for Craft CMS",
   "type": "craft-plugin",
   "license": "MIT",
+  "version": "4.0.0",
   "authors": [
     {
       "name": "Chris Dyer",
