@@ -69,13 +69,21 @@ class LiteSpeed extends Plugin
 
     private function _registerEvents(): void
     {
-        Event::on(
-            Elements::class,
+        $elementEvents = [
             Elements::EVENT_AFTER_SAVE_ELEMENT,
-            function (ElementEvent $event) {
-                $this->_handleCraftEvent($event);
-            }
-        );
+            Elements::EVENT_AFTER_DELETE_ELEMENT,
+            Elements::EVENT_AFTER_RESTORE_ELEMENT,
+        ];
+
+        foreach ($elementEvents as $event) {
+            Event::on(
+              Elements::class,
+              $event,
+              function (ElementEvent $event) {
+                  $this->_handleCraftEvent($event);
+              }
+            );
+        }
 
         Event::on(
             ClearCaches::class,
